@@ -9,6 +9,20 @@ const Dashboard = () => {
   const [stats, setStats] = useState({scheduled: 0, published: 0, connectedAccounts: 0})
   const [activities, setActivities] = useState<any[]>([])
 
+  const getGreeting = () => {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return "Good morning! 🌅";
+  } else if (hour >= 12 && hour < 17) {
+    return "Good afternoon! ☀️";
+  } else if (hour >= 17 && hour < 21) {
+    return "Good evening! 🌆";
+  } else {
+    return "Good night! 🌙";
+  }
+};
+
   useEffect(()=>{
     const fetchDashboardData = async () => {
       try {
@@ -53,7 +67,8 @@ const Dashboard = () => {
     <div className="space-y-8">
       {/* Welcome bar */}
       <div>
-        <h2 className="text-2xl text-slate-900">Good morning! 👋</h2>
+        {/* <h2 className="text-2xl text-slate-900">Good morning! 👋</h2> */}
+        <h2 className="text-2xl text-slate-900">{getGreeting()}</h2>
         <p className="text-slate-500 text-sm mt-0.5">Here's what's happening with your social accounts today.</p>
       </div>
 
